@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://tbfd4kb6ywoa"]
+
+[ext_resource type="Script" path="res://scenes/scripts/Main.gd" id="1_nxnxd"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nxnxd")
+
+[node name="DiscreteWave" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="DiscreteSunset" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="MiniSun" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.439049, 0.439049, 0.439049, 1)
