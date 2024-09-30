@@ -1,20 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://tbfd4kb6ywoa"]
+[gd_scene load_steps=6 format=3 uid="uid://tbfd4kb6ywoa"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Main.gd" id="1_nxnxd"]
+[ext_resource type="Shader" path="res://resources/shaders/DiscreteOcean.gdshader" id="2_y5dn2"]
+[ext_resource type="FontFile" uid="uid://esnv0ha5j62q" path="res://addons/jam_essentials/resources/fonts/grapesoda_2/GrapeSoda.ttf" id="3_526g4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tja31"]
+shader = ExtResource("2_y5dn2")
+shader_parameter/bottom_color = Color(0.11002, 0.135406, 0.305108, 1)
+shader_parameter/top_color = Color(0.590005, 0.339766, 0.588479, 1)
+shader_parameter/wave_amp = 0.054
+shader_parameter/wave_size = 1.23
+shader_parameter/wave_time_mul = 0.478
+shader_parameter/total_phases = 10
+
+[sub_resource type="Theme" id="Theme_8nwhj"]
+default_font = ExtResource("3_526g4")
+default_font_size = 256
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_nxnxd")
 
-[node name="DiscreteWave" type="ColorRect" parent="."]
+[node name="ShaderContainer" type="Node2D" parent="."]
+
+[node name="DiscreteWave" type="ColorRect" parent="ShaderContainer"]
+material = SubResource("ShaderMaterial_tja31")
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="DiscreteSunset" type="ColorRect" parent="."]
+[node name="DiscreteSunset" type="ColorRect" parent="ShaderContainer"]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
-[node name="MiniSun" type="ColorRect" parent="."]
+[node name="MiniSun" type="ColorRect" parent="ShaderContainer"]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="Loading" type="ColorRect" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Loading" type="RichTextLabel" parent="Loading"]
+layout_mode = 0
+offset_top = 368.0
+offset_right = 1920.0
+offset_bottom = 696.0
+theme = SubResource("Theme_8nwhj")
+bbcode_enabled = true
+text = "[center]Saving GIF - 100%"
