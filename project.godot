@@ -13,6 +13,7 @@ config_version=5
 config/name="ShaderPack"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=50
 config/icon="res://icon.png"
 
 [display]

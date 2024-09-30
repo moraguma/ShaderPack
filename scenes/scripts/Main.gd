@@ -45,9 +45,9 @@ func export_gif():
 		var img = get_viewport().get_texture().get_image()
 		img.resize(GIF_RESOLUTION[0], GIF_RESOLUTION[1])
 		img.convert(Image.FORMAT_RGBA8)
-		exporter.add_frame(img, 1.0 / 60.0, MedianCutQuantization)
+		exporter.add_frame(img, 1.0 / 50.0, MedianCutQuantization)
 		await get_tree().process_frame
-	var file: FileAccess = FileAccess.open("user://" + shader_scenes[pos].name + ".gif", FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open("user://" + shader_scenes[pos].name + Time.get_datetime_string_from_system().replace(":", "-") + ".gif", FileAccess.WRITE)
 	file.store_buffer(exporter.export_file_data())
 	file.close()
 	
