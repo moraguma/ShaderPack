@@ -1,17 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://tbfd4kb6ywoa"]
+[gd_scene load_steps=10 format=3 uid="uid://tbfd4kb6ywoa"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Main.gd" id="1_nxnxd"]
 [ext_resource type="Shader" path="res://resources/shaders/DiscreteOcean.gdshader" id="2_y5dn2"]
+[ext_resource type="Shader" path="res://resources/shaders/DiamondBlink.gdshader" id="3_18d1c"]
 [ext_resource type="FontFile" uid="uid://esnv0ha5j62q" path="res://addons/jam_essentials/resources/fonts/grapesoda_2/GrapeSoda.ttf" id="3_526g4"]
+[ext_resource type="Shader" path="res://resources/shaders/DiscreteSunset.gdshader" id="4_fqmgy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tja31"]
 shader = ExtResource("2_y5dn2")
 shader_parameter/bottom_color = Color(0.11002, 0.135406, 0.305108, 1)
 shader_parameter/top_color = Color(0.590005, 0.339766, 0.588479, 1)
-shader_parameter/wave_amp = 0.054
+shader_parameter/wave_amp = 0.032
 shader_parameter/wave_size = 1.23
 shader_parameter/wave_time_mul = 0.478
-shader_parameter/total_phases = 10
+shader_parameter/total_phases = 9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6qqd"]
+shader = ExtResource("3_18d1c")
+shader_parameter/color1 = Color(0.961742, 0.260018, 0.579896, 1)
+shader_parameter/color2 = Color(0.994014, 0.391589, 0.489818, 1)
+shader_parameter/diamondPixelSize = 64.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7pga"]
+shader = ExtResource("4_fqmgy")
+shader_parameter/bottom_color = Color(0.148855, 0.245777, 0.434361, 1)
+shader_parameter/top_color = Color(0.847768, 0.410031, 0.817638, 1)
+shader_parameter/beam_distance = 0.025
+shader_parameter/beam_height = 0.02
+shader_parameter/beam_width = 0.355
+shader_parameter/total_phases = 5
 
 [sub_resource type="Theme" id="Theme_8nwhj"]
 default_font = ExtResource("3_526g4")
@@ -28,15 +45,17 @@ material = SubResource("ShaderMaterial_tja31")
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="DiscreteSunset" type="ColorRect" parent="ShaderContainer"]
-visible = false
-offset_right = 1920.0
+[node name="DiamondBlink" type="ColorRect" parent="ShaderContainer"]
+material = SubResource("ShaderMaterial_w6qqd")
+offset_left = 1920.0
+offset_right = 3840.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
-[node name="MiniSun" type="ColorRect" parent="ShaderContainer"]
-visible = false
-offset_right = 1920.0
+[node name="DiscreteSunset" type="ColorRect" parent="ShaderContainer"]
+material = SubResource("ShaderMaterial_n7pga")
+offset_left = 3840.0
+offset_right = 5760.0
 offset_bottom = 1080.0
 color = Color(0.439049, 0.439049, 0.439049, 1)
 

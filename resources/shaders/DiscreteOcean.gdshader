@@ -31,17 +31,6 @@ vec4 lerp(vec4 a, vec4 b, float w) {
 
 
 void fragment() {
-	float diff = 1.0 / float(total_phases) + 0.05 * sin((UV.x - 0.5) * 10.0 * UV.y + TIME);
-	float y = UV.y;
-
-	for (int i = 0; i < total_phases; i++) {
-		if (y <= diff) {
-			COLOR = lerp(bottom_color, top_color, float(i) * diff);
-			break;
-		}
-		y -= diff;
-	}
-	
 	float t = float(total_phases);
 	float effective_wave_amp = min(wave_amp, 0.5 / t);
 	float d = fmod(UV.y, 1.0 / t);
