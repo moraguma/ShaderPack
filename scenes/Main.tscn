@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://tbfd4kb6ywoa"]
+[gd_scene load_steps=15 format=3 uid="uid://tbfd4kb6ywoa"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Main.gd" id="1_nxnxd"]
 [ext_resource type="Shader" path="res://resources/shaders/DiscreteOcean.gdshader" id="2_y5dn2"]
@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://esnv0ha5j62q" path="res://addons/jam_essentials/resources/fonts/grapesoda_2/GrapeSoda.ttf" id="3_526g4"]
 [ext_resource type="Shader" path="res://resources/shaders/DiscreteSunset.gdshader" id="4_fqmgy"]
 [ext_resource type="Shader" path="res://resources/shaders/Sun.gdshader" id="5_ind00"]
+[ext_resource type="Shader" path="res://resources/shaders/DiscreteClouds.gdshader" id="5_q632i"]
+[ext_resource type="Texture2D" uid="uid://ee1ls66t42uc" path="res://resources/textures/bubbles.png" id="6_dgttl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tja31"]
 shader = ExtResource("2_y5dn2")
@@ -33,6 +35,16 @@ shader_parameter/ray_distance = 0.05
 shader_parameter/ray_width = 0.05
 shader_parameter/total_rays = 4
 shader_parameter/time_scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_td5hc"]
+shader = ExtResource("5_q632i")
+shader_parameter/bottom_color = Color(0.978253, 0.212489, 0.712126, 1)
+shader_parameter/top_color = Color(0.274051, 0.0515879, 0.378001, 1)
+shader_parameter/layer_count = 40
+shader_parameter/time_scale = 0.144
+shader_parameter/base_intensity = 0.08
+shader_parameter/size = 0.87101
+shader_parameter/tex = ExtResource("6_dgttl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6qqd"]
 shader = ExtResource("3_18d1c")
@@ -70,10 +82,17 @@ color = Color(0.929089, 0.90439, 0.767928, 1)
 
 [node name="Sun" type="ColorRect" parent="ShaderContainer/Sun"]
 material = SubResource("ShaderMaterial_5cn2b")
+layout_mode = 0
 offset_left = 704.0
 offset_top = 284.0
 offset_right = 1216.0
 offset_bottom = 796.0
+
+[node name="Clouds" type="ColorRect" parent="ShaderContainer"]
+material = SubResource("ShaderMaterial_td5hc")
+offset_left = 7680.0
+offset_right = 9600.0
+offset_bottom = 1080.0
 
 [node name="DiamondBlink" type="ColorRect" parent="ShaderContainer"]
 material = SubResource("ShaderMaterial_w6qqd")
